@@ -47,7 +47,15 @@
               "tsx": "never"
             }
          ],
-         "prettier/prettier": "error"
+         "prettier/prettier": "error",
+         /*https://github.com/facebook/create-react-app/discussions/11864  --> @yaverm on 8 Jan*/
+         "react/function-component-definition": [
+            2,
+            {
+                "namedComponents": "arrow-function",
+                "unnamedComponents": "arrow-function"
+            }
+        ]
     },
     "settings": {
         "import/resolver": {

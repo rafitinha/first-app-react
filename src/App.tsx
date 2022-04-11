@@ -1,9 +1,10 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import Rotas from './routes';
 
-function App() {
-  return (
-   <h1>Hello World</h1>
-  );
-}
-
+const App: React.FC = () => (
+    <BrowserRouter>
+        <Rotas />
+    </BrowserRouter>
+);
 export default App;
