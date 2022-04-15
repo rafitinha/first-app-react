@@ -12,3 +12,18 @@ yarn add -D eslint-plugin-react@^7.28.0 @typescript-eslint/eslint-plugin@latest 
 yarn add eslint-import-resolver-typescript -D
 
 yarn add prettier eslint-config-prettier eslint-plugin-prettier -D
+
+
+// React 18 index.tsx
+
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+import './index.css';
+import App from './App';
+
+ReactDOM.createRoot(document.querySelector('#root')).render(
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>,
+);
