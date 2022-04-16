@@ -7,8 +7,11 @@ import api from '../../services/api';
 
 import logoImg from '../../assets/logo.svg';
 
-import { Title, Form, Repositories } from './styles';
+import { Title, Form, Repositories, Error } from './styles';
 import Repository from '../Repository';
+
+// truthy, falsy
+// Boolean(?)
 
 interface Repository {
     full_name: string;
@@ -21,6 +24,7 @@ interface Repository {
 
 export const Dashboard: React.FC = () => {
     const [newRepo, setNewRepo] = useState('');
+    const [inputError, setInputError] = useState('');
     const [repositories, setRepositories] = useState<Repository[]>([]);
 
     async function handleAddRepository(
@@ -28,30 +32,39 @@ export const Dashboard: React.FC = () => {
     ): Promise<void> {
         event.preventDefault();
 
-        const response = await api.get<Repository>(`repos/${newRepo}`);
+        if (!newRepo) {
+            setInputError('Digite o autor/nome do repositório');
+            return;
+        }
 
-        const repository = response.data;
+        try {
+            const response = await api.get<Repository>(`repos/${newRepo}`);
 
-        console.log(repository);
+            const repository = response.data;
 
-        setRepositories([...repositories, repository]);
-        setNewRepo('');
+            // console.log(repository);
+
+            setRepositories([...repositories, repository]);
+            setNewRepo('');
+            setInputError('');
+        } catch (error) {
+            setInputError('Erro na busca por esse repositório');
+        }
     }
 
     return (
         <>
             <img src={logoImg} alt="Github Explorer" />
             <Title>Explore repositórios no Github</Title>
-            <Form>
-                <form onSubmit={handleAddRepository}>
-                    <input
-                        value={newRepo}
-                        onChange={e => setNewRepo(e.target.value)}
-                        placeholder="Digite o nome do repositório"
-                    />
-                    <button type="submit">Pesquisa</button>
-                </form>
+            <Form onSubmit={handleAddRepository} hasError={!!inputError}>
+                <input
+                    value={newRepo}
+                    onChange={e => setNewRepo(e.target.value)}
+                    placeholder="Digite o nome do repositório"
+                />
+                <button type="submit">Pesquisa</button>
             </Form>
+            {inputError && <Error>{inputError}</Error>}
             <Repositories>
                 {repositories.map(repository => (
                     <a key={repository.full_name} href="teste">
