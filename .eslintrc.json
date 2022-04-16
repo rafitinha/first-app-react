@@ -55,6 +55,12 @@
                 "namedComponents": "arrow-function",
                 "unnamedComponents": "arrow-function"
             }
+        ],
+        "@typescript-eslint/explicit-function-return-type": [
+            "error",
+            {
+                "allowExpressions": true
+            }
         ]
     },
     "settings": {
