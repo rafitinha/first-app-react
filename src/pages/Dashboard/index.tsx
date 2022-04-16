@@ -9,7 +9,6 @@ import api from '../../services/api';
 import logoImg from '../../assets/logo.svg';
 
 import { Title, Form, Repositories, Error } from './styles';
-import Repository from '../Repository';
 
 // truthy, falsy
 // Boolean(?)

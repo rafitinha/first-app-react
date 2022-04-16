@@ -9,7 +9,7 @@ export const Header = styled.header`
         display: flex;
         align-items: center;
         text-decoration: none;
-        columns: #a8a8b3;
+        color: #a8a8b3;
         transition: color 0.2s;
 
         &:hover {
