@@ -5,6 +5,7 @@ import Repository from '../pages/Repository';
 
 const Rotas: React.FC = () => (
     <Routes>
+        <Route path="/first-app-react" element={<Dashboard />} />
         <Route path="/" element={<Dashboard />} />
         <Route path="dashboard" element={<Dashboard />} />
         <Route
